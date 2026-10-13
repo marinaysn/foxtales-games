@@ -5,7 +5,7 @@ Small, independently reviewable pull requests. Items depending on TBD values in 
 1. Project foundation: documentation and configuration (this PR).
 2. Angular scaffold under `frontend/` and frontend CI.
 3. ASP.NET Core scaffold: `FoxTales.Api` and `FoxTales.Api.Tests`, plus backend CI.
-4. PostgreSQL and EF Core: `Infrastructure` folder, first migration.
+4. PostgreSQL and EF Core: Docker Compose database, `Infrastructure` folder and `FoxTalesDbContext`. The first migration is deferred until a real entity is introduced.
 5. Bingo card generation in `Domain`, with backend tests.
 6. Ball draw engine without duplicates.
 7. Win detection: rows, columns, diagonals.
