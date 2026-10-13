@@ -18,7 +18,20 @@ See [docs/GAME_SPEC.md](docs/GAME_SPEC.md), [docs/ARCHITECTURE.md](docs/ARCHITEC
 
 ## Status
 
-Project foundation and the Angular frontend scaffold. The backend is not scaffolded yet; see the roadmap.
+Project foundation, the Angular frontend scaffold and the ASP.NET Core backend scaffold (`GET /health` only). See the roadmap.
+
+## Backend
+
+Requires the .NET SDK 10.0.400 or a later 10.0.x feature band (see `backend/global.json`). Run from `backend/`:
+
+```
+dotnet restore                              restore dependencies
+dotnet build FoxTales.Api -c Release        production build, tests are not compiled
+dotnet test --project FoxTales.Api.Tests    build and run tests (xUnit v3)
+dotnet run --project FoxTales.Api           development server at http://localhost:5080
+```
+
+`GET http://localhost:5080/health` returns `Healthy`. The OpenAPI document is served at `http://localhost:5080/openapi/v1.json` in Development only.
 
 ## Frontend
 

@@ -24,7 +24,7 @@ foxtales-games/
         state/
         ui/
   backend/
-    FoxTales.sln
+    FoxTales.slnx
     FoxTales.Api/
       Controllers/
       Domain/
