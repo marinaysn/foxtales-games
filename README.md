@@ -18,7 +18,19 @@ See [docs/GAME_SPEC.md](docs/GAME_SPEC.md), [docs/ARCHITECTURE.md](docs/ARCHITEC
 
 ## Status
 
-Project foundation only. Applications are not scaffolded yet; see the roadmap.
+Project foundation and the Angular frontend scaffold. The backend is not scaffolded yet; see the roadmap.
+
+## Frontend
+
+Requires Node.js 24 LTS. Run from `frontend/`:
+
+```
+npm ci              install dependencies
+npm start           development server at http://localhost:4200
+npm test            run unit tests once (Vitest)
+npm run build       production build, base path /
+npm run build:pages production build for GitHub Pages, base path /foxtales-games/
+```
 
 ## Repository Layout
 
