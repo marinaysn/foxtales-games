@@ -1,0 +1,8 @@
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHealthChecks();
+builder.Services.AddOpenApi();
+var app = builder.Build();
+app.MapHealthChecks("/health");
+if (app.Environment.IsDevelopment()) app.MapOpenApi();
+app.Run();
+public partial class Program;

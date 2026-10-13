@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FoxTales.Api.Tests/FoxTales.Api.Tests.csproj" />
+  <Project Path="FoxTales.Api/FoxTales.Api.csproj" />
+</Solution>
