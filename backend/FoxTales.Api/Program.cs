@@ -1,4 +1,6 @@
+using FoxTales.Api.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoxTalesDatabase(builder.Configuration);
 builder.Services.AddHealthChecks();
 builder.Services.AddOpenApi();
 var app = builder.Build();

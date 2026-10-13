@@ -61,6 +61,7 @@ foxtales-games/
 - PostgreSQL on Neon Free, accessed through Entity Framework Core with Npgsql.
 - Stores players, guest sessions, progress, inventory, books, levels and clues.
 - Schema changes via EF Core migrations.
+- Local development uses PostgreSQL 17 in Docker Compose on localhost port 5433; see README.md.
 
 ## Testing
 
