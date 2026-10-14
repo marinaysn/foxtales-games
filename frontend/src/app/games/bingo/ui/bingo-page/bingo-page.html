@@ -1,0 +1,55 @@
+<main class="stage">
+  <ft-bingo-scene class="scene" aria-hidden="true" />
+  <header class="top">
+    <h1 class="logo">Fox<span>Tales</span> Bingo</h1>
+    <p class="demo">{{ label }}</p>
+  </header>
+  <div class="rail">
+  <section class="panel current" aria-labelledby="current-title">
+    <h2 id="current-title">Current ball</h2>
+    <div class="slot">
+      @for (ball of latest(); track ball) {
+        <ft-bingo-ball class="drop" [ball]="ball" size="large" />
+      } @empty {
+        <p class="empty">Draw a ball to begin</p>
+      }
+    </div>
+    <p class="sr" aria-live="polite">
+      @if (store.current(); as ball) { Ball {{ ball }} called }
+    </p>
+  </section>
+  <section class="panel history" aria-labelledby="history-title">
+    <h2 id="history-title">Draw history</h2>
+    <ol class="balls">
+      @for (ball of history(); track ball) {
+        <li><ft-bingo-ball [ball]="ball" /></li>
+      } @empty {
+        <li class="empty">No balls drawn yet</li>
+      }
+    </ol>
+  </section>
+  </div>
+  <ft-bingo-controls class="panel controls" aria-label="Controls" [running]="running()" (start)="start()" (restart)="restart()" />
+  <section class="board">
+    <img class="fox peeking" src="art/bingo/fox-peek.png" alt="">
+    <div class="cards" [attr.data-count]="store.count()">
+      @for (card of store.cards(); track $index) {
+        <ft-bingo-card
+          [card]="card"
+          [number]="$index + 1"
+          [called]="store.drawn()"
+          [marked]="store.marked()[$index]"
+          [winning]="store.winning()[$index]"
+          [lines]="store.lines()[$index]"
+          [missed]="reminders.missed()"
+          (daub)="store.daub($index, $event)"
+        />
+      }
+    </div>
+  </section>
+  <div class="toasts">
+    @for (item of store.achievements(); track item.id) {
+      <ft-bingo-celebration [card]="item.card" [lines]="item.lines" />
+    }
+  </div>
+</main>

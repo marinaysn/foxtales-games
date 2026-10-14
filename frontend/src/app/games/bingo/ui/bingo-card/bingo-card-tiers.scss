@@ -1,0 +1,61 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0.3rem;
+  color: #fff3df;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ribbon {
+  padding: 0.05rem 0.6rem;
+  border-radius: 999px;
+  background: #ffd36b;
+  color: #3b1d0e;
+  letter-spacing: 0.1em;
+}
+
+.ribbon small {
+  font-size: 0.8em;
+}
+
+$tiers: (
+  bingo: #3ddc55,
+  double: #3b9dff,
+  triple: #b160ff,
+  grande: #ffd36b,
+  super: #ffc400,
+);
+
+@each $tier, $glow in $tiers {
+  .card[data-tier='#{$tier}'] {
+    border-color: $glow;
+    box-shadow: 0 0 1.6rem $glow, inset 0 0 0 0.15rem #c58a50;
+    animation: frame-#{$tier} 1.1s ease-out;
+  }
+
+  .card[data-tier='#{$tier}'] .ribbon {
+    background: $glow;
+  }
+
+  @keyframes frame-#{$tier} {
+    40% { transform: scale(1.025); box-shadow: 0 0 3rem 0.4rem $glow, inset 0 0 0 0.15rem #c58a50; }
+  }
+}
+
+.card[data-tier='super'] {
+  animation-duration: 2s;
+}
+
+.card[data-tier='super'] .ribbon {
+  background: linear-gradient(90deg, #ff7ab8, #ffd36b);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none !important;
+  }
+}

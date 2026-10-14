@@ -1,0 +1,9 @@
+<div class="toast" role="status" [attr.data-tier]="tier()">
+  <span class="sparks" aria-hidden="true">
+    @for (spark of sparks; track spark) {
+      <i class="spark" [style.--n]="spark"></i>
+    }
+  </span>
+  <strong class="title">{{ title() }}</strong>
+  <span class="note">Card {{ card() }}: {{ lines() }} {{ lines() === 1 ? 'line' : 'lines' }}</span>
+</div>
