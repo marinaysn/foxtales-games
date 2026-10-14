@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1f4a"/>
+      <stop offset="0.6" stop-color="#3a2a5c"/>
+      <stop offset="1" stop-color="#7a3d3a"/>
+    </linearGradient>
+    <symbol id="pine" viewBox="0 0 100 200">
+      <path d="M50 0 L82 60 H66 L92 110 H72 L100 170 H0 L28 110 H8 L34 60 H18 Z"/>
+      <rect x="44" y="168" width="12" height="32"/>
+    </symbol>
+  </defs>
+  <rect width="1200" height="400" fill="url(#sky)"/>
+  <g fill="#2c3466" opacity="0.8">
+    <use href="#pine" x="20" y="120" width="90" height="180"/>
+    <use href="#pine" x="180" y="100" width="100" height="200"/>
+    <use href="#pine" x="380" y="130" width="90" height="180"/>
+    <use href="#pine" x="560" y="90" width="110" height="220"/>
+    <use href="#pine" x="760" y="120" width="95" height="190"/>
+    <use href="#pine" x="940" y="100" width="105" height="210"/>
+    <use href="#pine" x="1100" y="130" width="90" height="180"/>
+  </g>
+  <g fill="#1b2a3a">
+    <use href="#pine" x="-30" y="150" width="130" height="260"/>
+    <use href="#pine" x="260" y="170" width="120" height="240"/>
+    <use href="#pine" x="470" y="160" width="130" height="250"/>
+    <use href="#pine" x="680" y="175" width="120" height="240"/>
+    <use href="#pine" x="880" y="160" width="130" height="250"/>
+    <use href="#pine" x="1090" y="150" width="130" height="260"/>
+  </g>
+  <g fill="#ffe9a8">
+    <circle cx="140" cy="60" r="1.8"/><circle cx="330" cy="40" r="1.4"/><circle cx="520" cy="70" r="1.8"/>
+    <circle cx="700" cy="36" r="1.4"/><circle cx="880" cy="64" r="1.8"/><circle cx="1060" cy="44" r="1.4"/>
+  </g>
+</svg>

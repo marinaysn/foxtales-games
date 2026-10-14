@@ -1,0 +1,228 @@
+:host {
+  display: block;
+  color: #fff3df;
+  font-family: 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr) 15rem;
+  grid-template-areas:
+    'top top top'
+    'rail board controls';
+  align-content: start;
+  gap: 1rem 1.5rem;
+  min-height: 100dvh;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: clip;
+  background: #1b1f4a;
+}
+
+.stage > :not(.scene),
+.rail > * {
+  z-index: 1;
+}
+
+.top {
+  grid-area: top;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+}
+
+.logo {
+  margin: 0;
+  padding: 0.3rem 1.4rem;
+  border: 0.25rem solid #8a5328;
+  border-radius: 1rem;
+  background: linear-gradient(160deg, #b5651d, #6b3d1a);
+  font-size: clamp(1.5rem, 6vw, 2.4rem);
+  font-weight: 900;
+  box-shadow: 0 0.4rem 1rem rgb(0 0 0 / 0.5);
+}
+
+.logo span {
+  color: #ffb62e;
+}
+
+.demo {
+  margin: 0;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.55);
+  color: #ffd36b;
+  font-size: 0.85rem;
+}
+
+.panel {
+  display: block;
+  padding: 0.9rem;
+  border: 0.2rem solid #8a5328;
+  border-radius: 1.1rem;
+  background: linear-gradient(160deg, rgb(94 52 24 / 0.92), rgb(52 28 12 / 0.92));
+  box-shadow: 0 0.5rem 1.2rem rgb(0 0 0 / 0.5);
+  text-align: center;
+}
+
+.panel h2 {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rail {
+  grid-area: rail;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  align-self: start;
+  position: sticky;
+  top: 1rem;
+}
+
+.controls {
+  grid-area: controls;
+  align-self: start;
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+}
+
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 9.5rem;
+}
+
+.drop {
+  animation: drop 0.7s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.empty {
+  margin: 0;
+}
+
+.board {
+  grid-area: board;
+  position: relative;
+  align-self: start;
+  margin-top: 3.5rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.2rem;
+  max-width: 84rem;
+  margin-inline: auto;
+}
+
+.cards[data-count='1'] { max-width: 30rem; }
+
+@media (min-width: 80rem) {
+  .cards {
+    --cols: 3;
+    --rows: 2;
+    --card: max(12rem, calc((100dvh - 14rem - (var(--rows) - 1) * 1.2rem) / (var(--rows) * 1.25)));
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    max-width: calc(var(--cols) * var(--card) + (var(--cols) - 1) * 1.2rem);
+  }
+
+  .cards[data-count='1'] { --cols: 1; --rows: 1; }
+  .cards[data-count='2'] { --cols: 2; --rows: 1; }
+  .cards[data-count='3'] { --rows: 1; }
+  .cards[data-count='4'] { --cols: 2; }
+}
+
+@media (max-width: 79.99rem) {
+  .cards[data-count='2'],
+  .cards[data-count='4'] { max-width: 56rem; }
+}
+
+.peeking {
+  position: absolute;
+  top: -5.8rem;
+  left: 50%;
+  z-index: 2;
+  width: 7rem;
+  transform: translateX(-50%);
+  animation: peek 4s ease-in-out infinite;
+}
+
+.balls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  max-height: 13rem;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.toasts {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@keyframes drop {
+  from { transform: translateY(-4rem) scale(0.4) rotate(-120deg); opacity: 0; }
+}
+
+@keyframes peek {
+  50% { transform: translateX(-50%) translateY(0.3rem); }
+}
+
+@media (max-width: 62rem) {
+  .stage {
+    grid-template-columns: repeat(2, minmax(0, 18rem));
+    grid-template-areas:
+      'top top'
+      'current controls'
+      'board board'
+      'history history';
+  }
+
+  .rail {
+    display: contents;
+  }
+
+  .current { grid-area: current; align-self: start; }
+  .history { grid-area: history; align-self: start; }
+
+  .controls {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drop,
+  .peeking {
+    animation: none;
+  }
+}

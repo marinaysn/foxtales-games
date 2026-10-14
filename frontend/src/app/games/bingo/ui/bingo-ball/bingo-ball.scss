@@ -1,0 +1,49 @@
+:host {
+  --tint: #8a3fc0;
+  --size: 3.2rem;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  font-size: calc(var(--size) / 3.2);
+}
+
+:host([data-size='large']) {
+  --size: 9rem;
+}
+
+@media (max-width: 62rem) {
+  :host([data-size='large']) {
+    --size: 7rem;
+  }
+}
+
+:host([data-letter='B']) { --tint: #e53935; }
+:host([data-letter='I']) { --tint: #f59a1b; }
+:host([data-letter='N']) { --tint: #2e9e4f; }
+:host([data-letter='G']) { --tint: #1e78d6; }
+:host([data-letter='O']) { --tint: #8a3fc0; }
+
+.disc {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 0.28em solid var(--tint);
+  background: radial-gradient(circle at 35% 30%, #fff 0 55%, #f1e4d0 100%);
+  box-shadow: 0 0.3em 0.6em rgb(0 0 0 / 0.45), inset 0 -0.2em 0.3em rgb(0 0 0 / 0.15);
+  color: #2b1a10;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.letter {
+  font-size: 1em;
+}
+
+.number {
+  font-size: 1.7em;
+}

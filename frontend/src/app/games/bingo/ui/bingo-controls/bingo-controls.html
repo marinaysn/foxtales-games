@@ -1,0 +1,32 @@
+<div class="counters">
+  <p class="counter">
+    <strong>{{ store.poolRemaining() }}</strong>
+    <span>Balls in pool (of {{ pool }})</span>
+  </p>
+  <p class="counter">
+    <strong>{{ store.callsRemaining() }}</strong>
+    <span>Calls left this round (of {{ calls }})</span>
+  </p>
+</div>
+<p class="summary" aria-live="polite">{{ store.winners().length }} of {{ store.count() }} {{ store.count() === 1 ? 'card' : 'cards' }} won</p>
+<p class="total">Total Bingo lines: {{ store.total() }}</p>
+<div class="choice" role="group" aria-label="Number of cards">
+  <span>Cards</span>
+  @for (choice of choices; track choice) {
+    <button type="button" class="count" [attr.aria-pressed]="store.count() === choice" [disabled]="!store.canChooseCount()" (click)="store.choose(choice)">{{ choice }}</button>
+  }
+</div>
+<button type="button" class="action primary" [disabled]="running() || !store.canDraw()" (click)="start.emit()">
+  {{ running() ? 'Drawing every 3 seconds' : 'Start drawing' }}
+</button>
+<button type="button" class="action" (click)="restart.emit()">New demo round</button>
+<p class="hint">
+  @if (store.callsRemaining() === 0) {
+    {{ done }}
+  } @else if (store.canChooseCount()) {
+    Choose 1 to 6 cards, then start drawing; a new ball is called every 3 seconds.
+  } @else {
+    Start a new demo round to change the number of cards.
+  }
+  <br>Mark glowing squares after their ball is called.
+</p>

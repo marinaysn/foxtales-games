@@ -1,0 +1,34 @@
+<main class="stage">
+  <ft-bingo-scene class="scene" aria-hidden="true" />
+  <header class="top">
+    <h1 class="logo">Fox<span>Tales</span> Bingo levels</h1>
+    <p class="demo">Scripted preview - not a real round</p>
+  </header>
+  <section class="panel">
+    <p class="status" aria-live="polite">
+      @if (finished()) {
+        Card locked at {{ maximum }} Bingos - marking is disabled.
+      } @else {
+        Lines completed: {{ store.lines()[0] }} of {{ maximum }}. Next: {{ next() }}
+      }
+    </p>
+    <button type="button" class="action primary" [disabled]="finished()" (click)="advance()">Complete next line</button>
+    <button type="button" class="action" (click)="reset()">Reset preview</button>
+  </section>
+  <ft-bingo-card
+    class="card"
+    [card]="store.cards()[0]"
+    [number]="1"
+    [called]="store.drawn()"
+    [marked]="store.marked()[0]"
+    [winning]="store.winning()[0]"
+    [lines]="store.lines()[0]"
+    [missed]="none"
+    (daub)="store.daub(0, $event)"
+  />
+  <div class="toasts">
+    @for (item of store.achievements(); track item.id) {
+      <ft-bingo-celebration [card]="item.card" [lines]="item.lines" />
+    }
+  </div>
+</main>

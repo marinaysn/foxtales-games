@@ -1,0 +1,73 @@
+:host {
+  display: block;
+  pointer-events: none;
+  animation: leave 0.6s ease-in 4s forwards;
+}
+
+.toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 0.2rem solid #ffd36b;
+  background: linear-gradient(160deg, #b5651d, #6b3d1a);
+  box-shadow: 0 0 1.5rem #ffb62e, 0 0.6rem 1.2rem rgb(0 0 0 / 0.5);
+  color: #fff;
+  animation: pop 0.5s cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+
+.title {
+  color: #ffd36b;
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0.1em 0 #7a3d0a;
+}
+
+.note {
+  font-weight: 700;
+}
+
+.sparks {
+  position: absolute;
+  inset: 0;
+}
+
+.spark {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--n) * 12% + 6%);
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: hsl(calc(var(--n) * 47), 90%, 60%);
+  animation: burst 1.2s ease-out both;
+  animation-delay: calc(var(--n) * 0.05s);
+}
+
+@keyframes pop {
+  from { transform: translateY(-1.5rem) scale(0.5); opacity: 0; }
+}
+
+@keyframes burst {
+  to { transform: translateY(calc(var(--n) * 0.45rem - 1.5rem)) scale(0); opacity: 0; }
+}
+
+@keyframes leave {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+
+  .sparks {
+    display: none;
+  }
+}
+
+.toast[data-tier='double'] { border-color: #3b9dff; box-shadow: 0 0 1.5rem #3b9dff, 0 0.6rem 1.2rem rgb(0 0 0 / 0.5); }
+.toast[data-tier='triple'] { border-color: #b160ff; box-shadow: 0 0 1.5rem #b160ff, 0 0.6rem 1.2rem rgb(0 0 0 / 0.5); }
+.toast[data-tier='bingo'] { border-color: #3ddc55; box-shadow: 0 0 1.5rem #3ddc55, 0 0.6rem 1.2rem rgb(0 0 0 / 0.5); }
